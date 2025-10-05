@@ -38,24 +38,37 @@ st.set_page_config(
 )
 
 # -------------------- Sidebar --------------------
+st.set_page_config(
+    page_title="Avey360",
+    page_icon="🩺",
+    layout="centered",
+)
+
+# -------------------- Sidebar --------------------
 with st.sidebar:
     selected = option_menu(
-        "Avey360",
-        [
-            "Avey Therapist",
-            "Avey Radiology",
-            "Avey DocuScan",
-            "Avey PharmaGuide"
-        ],
-        menu_icon="hospital",  # Main sidebar icon
-        icons=[
-            "chat-heart",      
-            "lungs-fill",  
-            "newspaper",
-            "capsule"  
-        ],
-        default_index=0
+        menu_title="Avey360",
+        options=["Avey Therapist", "Avey Radiology", "Avey DocuScan", "Avey PharmaGuide"],
+        icons=["chat-dots", "lungs", "file-earmark-text", "capsule"],
+        default_index=0,
+        styles={
+            "container": {"padding": "5px", "background-color": "#ffffff", "border-radius": "10px"},
+            "icon": {"color": "#004080", "font-size": "20px"},  # blue icons
+            "nav-link": {
+                "color": "#001f3f",
+                "font-size": "16px",
+                "text-align": "left",
+                "margin": "5px 0",
+                "--hover-color": "#e6f0ff",  # light blue hover
+            },
+            "nav-link-selected": {
+                "background-color": "#007bff",  # bright blue instead of red
+                "color": "white",
+                "font-weight": "bold",
+            },
+        }
     )
+
 
 # -------------------- Avey Therapist page  --------------------
 if selected == 'Avey Therapist':
@@ -194,3 +207,4 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
