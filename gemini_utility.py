@@ -81,6 +81,8 @@ ALTERNATIVE_DRUG_PROMPT = ("""
 
     - Format clearly with bullet points and short paragraphs.
 
+    - give me all the prices for each medicine
+
     End with a disclaimer:
 
 “This information is for educational purposes only. Consult a healthcare provider before changing any medication.”
@@ -90,4 +92,5 @@ def alternative_medicine_response(user_prompt):
     gemini_model = genai.GenerativeModel("gemini-2.0-flash-001")
     full_prompt = f"{ALTERNATIVE_DRUG_PROMPT}\n\nQuestion:\n{user_prompt}"
     response = gemini_model.generate_content(full_prompt)
+
     return response.text
