@@ -81,7 +81,7 @@ ALTERNATIVE_DRUG_PROMPT = ("""
 
     - Format clearly with bullet points and short paragraphs.
 
-    - give me all the prices for each medicine
+    - give me all the prices in egyptian currency, and make sure please that this is existed in egypt.
 
     End with a disclaimer:
 
@@ -94,3 +94,4 @@ def alternative_medicine_response(user_prompt):
     response = gemini_model.generate_content(full_prompt)
 
     return response.text
+
