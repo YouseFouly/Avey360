@@ -9,6 +9,7 @@ import google.generativeai as genai
 
 # Configure google.generativeai using Streamlit secrets
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+genai.configure(api_key=GOOGLE_API_KEY)
 
 
 # =====================================================
@@ -83,6 +84,7 @@ def alternative_medicine_response(user_prompt):
     full_prompt = f"{ALTERNATIVE_DRUG_PROMPT}\n\nQuestion:\n{user_prompt}"
     response = gemini_model.generate_content(full_prompt)
     return response.text
+
 
 
 
