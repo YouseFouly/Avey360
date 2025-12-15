@@ -3,6 +3,8 @@ import json
 from PIL import Image
 
 import google.generativeai as genai
+import streamlit as st
+
 
 # working directory path
 working_dir = os.path.dirname(os.path.abspath(__file__))
@@ -93,6 +95,7 @@ def alternative_medicine_response(user_prompt):
     response = gemini_model.generate_content(full_prompt)
 
     return response.text
+
 
 
 
