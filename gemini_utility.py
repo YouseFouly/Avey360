@@ -41,7 +41,7 @@ AVEY_SYSTEM = (
 )
 
 def avey_agent_response(user_prompt):
-    gemini_model = genai.GenerativeModel("gemini-2.0-flash-001")
+    gemini_model = genai.GenerativeModel("gemini-2.5-flash-lite")
     full_prompt = f"{AVEY_SYSTEM}\n\nQuestion:\n{user_prompt}"
     response = gemini_model.generate_content(full_prompt)
     return response.text
@@ -49,7 +49,7 @@ def avey_agent_response(user_prompt):
 
 # get response from gemini-2.0-flash model - image/text to text
 def gemini_flash_vision_response(prompt, image):
-    gemini_flash_vision_model = genai.GenerativeModel("gemini-2.0-flash-001")
+    gemini_flash_vision_model = genai.GenerativeModel("gemini-2.5-flash-lite")
     response = gemini_flash_vision_model.generate_content([prompt, image])
     result = response.text
     return result
@@ -89,9 +89,10 @@ ALTERNATIVE_DRUG_PROMPT = ("""
 """)
 
 def alternative_medicine_response(user_prompt):
-    gemini_model = genai.GenerativeModel("gemini-2.0-flash-001")
+    gemini_model = genai.GenerativeModel("gemini-2.5-flash-lite")
     full_prompt = f"{ALTERNATIVE_DRUG_PROMPT}\n\nQuestion:\n{user_prompt}"
     response = gemini_model.generate_content(full_prompt)
 
     return response.text
+
 
