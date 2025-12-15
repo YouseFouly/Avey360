@@ -1,21 +1,20 @@
-import os
-import json
-from PIL import Image
-
-import google.generativeai as genai
 import streamlit as st
+from PIL import Image
+import google.generativeai as genai
 
 
-# working directory path
-working_dir = os.path.dirname(os.path.abspath(__file__))
+# =====================================================
+# CONFIGURATION
+# =====================================================
 
-# path of config_data file
+# Configure google.generativeai using Streamlit secrets
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
-# configuring google.generativeai with API key
-genai.configure(api_key=GOOGLE_API_KEY)
 
-# System prompt for Avey agent
+# =====================================================
+# SYSTEM PROMPTS
+# =====================================================
+
 AVEY_SYSTEM = (
     """
     You are Avey Therapist, an empathetic AI psychiatrist offering a safe, supportive space for users to share their feelings.
@@ -38,6 +37,34 @@ AVEY_SYSTEM = (
     """
 )
 
+ALTERNATIVE_DRUG_PROMPT = (
+    """
+    You are a medical AI assistant. When given a drug name, provide safe and effective alternatives for the same disease.
+
+    Tasks:
+    - Identify the drug’s use, class, and mechanism of action.
+    - Suggest 2–4 alternative medications that treat the same condition.
+
+    For each alternative, include:
+    - Generic & brand name
+    - Drug class
+    - How it works
+    - Why it’s a good alternative
+    - Explain key differences (mechanism, side effects, dosage, cost, or safety).
+    - Mention important precautions or contraindications.
+    - Format clearly with bullet points and short paragraphs.
+    - Give all prices in Egyptian currency and ensure availability in Egypt.
+
+    End with a disclaimer:
+    “This information is for educational purposes only. Consult a healthcare provider before changing any medication.”
+    """
+)
+
+
+# =====================================================
+# FUNCTIONS
+# =====================================================
+
 def avey_agent_response(user_prompt):
     gemini_model = genai.GenerativeModel("gemini-2.5-flash-lite")
     full_prompt = f"{AVEY_SYSTEM}\n\nQuestion:\n{user_prompt}"
@@ -45,53 +72,18 @@ def avey_agent_response(user_prompt):
     return response.text
 
 
-# get response from gemini-2.0-flash model - image/text to text
-def gemini_flash_vision_response(prompt, image):
-    gemini_flash_vision_model = genai.GenerativeModel("gemini-2.5-flash-lite")
-    response = gemini_flash_vision_model.generate_content([prompt, image])
-    result = response.text
-    return result
+def gemini_flash_vision_response(prompt, image: Image.Image):
+    gemini_model = genai.GenerativeModel("gemini-2.5-flash-lite")
+    response = gemini_model.generate_content([prompt, image])
+    return response.text
 
-
-# get response from gemini-2.0-flash model - text to text
-ALTERNATIVE_DRUG_PROMPT = ("""
-        You are a medical AI assistant. When given a drug name, provide safe and effective alternatives for the same disease.
-
-        Tasks:
-
-    - Identify the drug’s use, class, and mechanism of action.
-
-    - Suggest 2–4 alternative medications that treat the same condition.
-
-    For each alternative, include:
-
-    - Generic & brand name
-
-    - Drug class
-
-    - How it works
-
-    - Why it’s a good alternative
-
-    - Explain key differences (mechanism, side effects, dosage, cost, or safety).
-
-    - Mention important precautions or contraindications.
-
-    - Format clearly with bullet points and short paragraphs.
-
-    - give me all the prices in egyptian currency, and make sure please that this is existed in egypt.
-
-    End with a disclaimer:
-
-“This information is for educational purposes only. Consult a healthcare provider before changing any medication.”
-""")
 
 def alternative_medicine_response(user_prompt):
     gemini_model = genai.GenerativeModel("gemini-2.5-flash-lite")
     full_prompt = f"{ALTERNATIVE_DRUG_PROMPT}\n\nQuestion:\n{user_prompt}"
     response = gemini_model.generate_content(full_prompt)
-
     return response.text
+
 
 
 
