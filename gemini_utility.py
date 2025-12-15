@@ -8,8 +8,7 @@ import google.generativeai as genai
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # path of config_data file
-config_file_path = f"{working_dir}/config.json"
-config_data = json.load(open("config.json"))
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # loading the GOOGLE_API_KEY
 GOOGLE_API_KEY = config_data["GOOGLE_API_KEY"]
@@ -94,5 +93,6 @@ def alternative_medicine_response(user_prompt):
     response = gemini_model.generate_content(full_prompt)
 
     return response.text
+
 
 
