@@ -25,7 +25,7 @@ def load_lottie_url(url: str):
         return None
 
 # -------------------- Lottie Animations --------------------
-chat_json = load_lottie_url("https://lottie.host/a4740219-d7a3-4d45-8fd7-54b1a6231c6d/aAtuJcXhTv.json")
+chat_json = load_lottie_url("https://lottie.host/2299b659-da43-4051-b4b9-a41a4c9cd580/Vpc2zjf5nj.json")
 DocuScan_json = load_lottie_url("https://lottie.host/ae54cceb-fd3c-4aa4-a3fb-d0fac2f5b064/7ti9UBEHOr.json")
 Radiology_json = load_lottie_url("https://lottie.host/e0b74159-de28-4cfd-bae6-581698ce79e2/lME5BM0Pd9.json")  
 drug_json = load_lottie_url("https://lottie.host/14286a5b-1c1f-4045-a115-151fc05aae31/cdAdHR3dND.json")
@@ -207,5 +207,6 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
 
 
