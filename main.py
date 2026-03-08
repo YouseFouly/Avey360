@@ -36,16 +36,6 @@ st.set_page_config(
     page_icon="🩺",
     layout="centered",
 )
-
-st.markdown("""
-<style>
-.stApp {
-    background-color: white;
-    color: black;
-}
-</style>
-""", unsafe_allow_html=True)
-
 # -------------------- Sidebar --------------------
 st.set_page_config(
     page_title="Avey360",
@@ -216,6 +206,7 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
 
 
 
