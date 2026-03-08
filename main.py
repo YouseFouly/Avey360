@@ -25,8 +25,8 @@ def load_lottie_url(url: str):
         return None
 
 # -------------------- Lottie Animations --------------------
-chat_json = load_lottie_url("https://lottie.host/cc13fe2f-25c4-4547-b89a-5059f4044de4/Gn62lcFzBl.json")
-DocuScan_json = load_lottie_url("https://lottie.host/e41ef2f2-47f8-45c6-acb0-eb671ec4ffa1/WlBXFt2yPX.json")
+chat_json = load_lottie_url("https://lottie.host/a4740219-d7a3-4d45-8fd7-54b1a6231c6d/aAtuJcXhTv.json")
+DocuScan_json = load_lottie_url("https://lottie.host/ae54cceb-fd3c-4aa4-a3fb-d0fac2f5b064/7ti9UBEHOr.json")
 Radiology_json = load_lottie_url("https://lottie.host/e0b74159-de28-4cfd-bae6-581698ce79e2/lME5BM0Pd9.json")  
 drug_json = load_lottie_url("https://lottie.host/14286a5b-1c1f-4045-a115-151fc05aae31/cdAdHR3dND.json")
 
@@ -48,7 +48,7 @@ st.set_page_config(
 with st.sidebar:
     selected = option_menu(
         menu_title="Avey360",
-        options=["Avey Therapist", "Avey Radiology", "Avey DocuScan", "Avey PharmaGuide"],
+        options=["Avey Doctor", "Avey Radiology", "Avey DocuScan", "Avey PharmaGuide"],
         icons=["chat-dots", "lungs", "file-earmark-text", "capsule"],
         default_index=0,
         styles={
@@ -71,8 +71,8 @@ with st.sidebar:
 
 
 # -------------------- Avey Therapist page  --------------------
-if selected == 'Avey Therapist':
-    st.title("🫂 𝓐vey therapist is here for you ")
+if selected == 'Avey Doctor':
+    st.title("🫂 𝓐vey doctor is here for you ")
 
     if chat_json:
         st_lottie(chat_json, speed=1, loop=True, height=250)
@@ -207,4 +207,5 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
 
