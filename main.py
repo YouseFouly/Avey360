@@ -52,7 +52,7 @@ with st.sidebar:
         icons=["chat-dots", "lungs", "file-earmark-text", "capsule"],
         default_index=0,
         styles={
-            "container": {"padding": "5px", "background-color": "#ffffff", "border-radius": "10px"},
+            "container": {"padding": "5px", "border-radius": "10px"},
             "icon": {"color": "#004080", "font-size": "20px"},  # blue icons
             "nav-link": {
                 "color": "#001f3f",
@@ -207,6 +207,7 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
 
 
 
