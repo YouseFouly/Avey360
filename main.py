@@ -115,7 +115,7 @@ if selected == "Avey Radiology":
 
 
     if Radiology_json:
-        st_lottie(Radiology_json, speed=1, loop=True, height=250)
+        st_lottie(Radiology_json, speed=1, loop=True, height=300)
     else:
         st.error("❌ Failed to load animation.")
 
@@ -154,7 +154,7 @@ if selected == "Avey DocuScan":
     st.title("📋️ Doctor Documents Interpreter")
 
     if DocuScan_json:
-        st_lottie(DocuScan_json, speed=1, loop=True, height=250)
+        st_lottie(DocuScan_json, speed=1, loop=True, height=300)
     else:
         st.error("❌ Failed to load animation.")
 
@@ -207,6 +207,7 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
 
 
 
