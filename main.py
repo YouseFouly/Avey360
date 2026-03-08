@@ -75,7 +75,7 @@ if selected == 'Avey Doctor':
     st.title("🫂 𝓐vey doctor is here for you ")
 
     if chat_json:
-        st_lottie(chat_json, speed=1, loop=True, height=250)
+        st_lottie(chat_json, speed=1, loop=True, height=350)
     else:
         st.error("❌ Failed to load animation.")
 
@@ -207,6 +207,7 @@ if selected == "Avey PharmaGuide":
     if st.button("Get Alternative"):
         response = alternative_medicine_response(user_prompt)
         st.markdown(response)
+
 
 
 
